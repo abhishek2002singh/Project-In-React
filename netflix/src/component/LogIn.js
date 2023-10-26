@@ -1,16 +1,72 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Header from './Header'
+import {  createUserWithEmailAndPassword ,  signInWithEmailAndPassword} from "firebase/auth";
+import {auth} from '../utils/Firebase'
 
 
 import { useState } from 'react';
 import { BACKGROUND_IMAGE_URL , } from '../utils/consts'
+import { checkValidaData } from '../utils/Validate';
 
 const LogIn = () => {
 
   
 
   const [isChecked, setIsChecked] = useState(false);
-  const [method , setmethod]= useState(false)
+  const [method , setmethod]= useState(true)
+  const [errormassage , seterrormassage]=useState(null)
+
+  const email=useRef(null);
+  const password=useRef(null);
+  const name=useRef(null);
+
+  const handleButtonClick= ()=>{
+    //validate the data
+    
+    // console.log(email.current.value)
+    // console.log(password.current.value)
+    const massage=checkValidaData(email.current.value , password.current.value)
+    // console.log(massage);
+    seterrormassage(massage)
+
+    if(massage) return
+
+    if(!method){
+       //sign up logic
+       createUserWithEmailAndPassword(auth, email.current.value , password.current.value)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    seterrormassage(errorCode+"-"+errorMessage)
+  });
+
+
+    }
+    else{
+
+      signInWithEmailAndPassword(auth, email.current.value , password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+
+    console.log(user)
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+
+    seterrormassage(errorCode+"-"+errorMessage)
+  });
+
+    }
+  }
 
   const levelup=()=>{
     setmethod(!method)
@@ -30,12 +86,17 @@ const LogIn = () => {
         style={{ backgroundImage: `url(${BACKGROUND_IMAGE_URL})` }}
       ></div>
 
-      <form className=' w-[450px] p-12 bg-black absolute mt-20 mx-auto right-0 left-0 text-white rounded'>
+      <form onSubmit={(e)=>e.preventDefault()} className=' w-[450px] p-12 bg-black absolute mt-20 mx-auto right-0 left-0 text-white rounded'>
         <h1 className='font-bold text-3xl py-4'>{method ? "Sign-In" : "Sign-Up"}</h1>
-        {!method&&<input type='text' placeholder='User-name' className=' p-3 my-4 w-full bg-slate-800 rounded' />}
-        <input type='text' placeholder='E-mail Address' className=' p-3 my-4 w-full bg-slate-800 rounded' />
-        <input type='Password' placeholder='Password' className='p-3 my-4 w-full bg-slate-800 rounded ' />
-        <button className='p-4 my-4 bg-red-700 w-full rounded'>{method ? "Sign-In" : "Sign-Up"}</button>
+        {!method&&<input ref={name} type='text' placeholder='User-name' className=' p-3 my-4 w-full bg-slate-800 rounded' />}
+        <input ref={email} type='text' placeholder='E-mail Address' className=' p-3 my-4 w-full bg-slate-800 rounded' />
+        <input ref={password} type='Password' placeholder='Password' className='p-3 my-4 w-full bg-slate-800 rounded ' />
+         <p className='text-red-500'>{errormassage}</p>
+        <button className='p-4 my-4 bg-red-700 w-full rounded' 
+        
+        onClick={handleButtonClick}
+
+        >{method ? "Sign-In" : "Sign-Up"}</button>
         <div className='flex justify-between'>
             <label>
                  <input
