@@ -12,6 +12,7 @@ export const Closure=(props)=>{
                 <h3>{clue.info.name}</h3>
                 <h3>{clue.info.avgRating}</h3>
                 <h3>{clue.info.costForTwo}</h3>
+                
             </div>
             
           

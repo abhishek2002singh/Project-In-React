@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import Header from './Header'
-import {  createUserWithEmailAndPassword ,  signInWithEmailAndPassword} from "firebase/auth";
+import {  createUserWithEmailAndPassword ,  signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {auth} from '../utils/Firebase'
 
 
 import { useState } from 'react';
 import { BACKGROUND_IMAGE_URL , } from '../utils/consts'
 import { checkValidaData } from '../utils/Validate';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
 
@@ -15,6 +16,7 @@ const LogIn = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [method , setmethod]= useState(true)
   const [errormassage , seterrormassage]=useState(null)
+  const navigate=useNavigate();
 
   const email=useRef(null);
   const password=useRef(null);
@@ -37,7 +39,21 @@ const LogIn = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
-    console.log(user)
+    updateProfile(user, {
+      displayName: "name.current.value", photoURL: "https://avatars.githubusercontent.com/u/108977081?v=4"
+    }).then(() => {
+      // Profile updated!
+      // ...
+
+      console.log(user)
+      navigate("/browse")
+    }).catch((error) => {
+      // An error occurred
+      // ...
+      seterrormassage(error.massage);
+    });
+    
+   
     // ...
   })
   .catch((error) => {
@@ -57,6 +73,7 @@ const LogIn = () => {
     // ...
 
     console.log(user)
+    navigate("/browse")
   })
   .catch((error) => {
     const errorCode = error.code;
