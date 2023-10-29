@@ -9,14 +9,14 @@ const RestaurantMenu = () => {
     const [resMenu , setresMenu]=useState(null);
 
     const {resid}=useParams();
-    console.log(resid)
+   // console.log(resid)
 
     const fetchMenu =async()=>{
         const dt=await fetch(SEC_URL+resid)
 
         const json=await dt.json();
 
-        console.log(json)
+        //console.log(json)
          setresMenu(json.data)
     }
 
@@ -34,7 +34,7 @@ const RestaurantMenu = () => {
     const {name,avgRatingString,costForTwo   }=resMenu?.cards[0]?.card?.card?.info ;
 
       const {itemCards}=resMenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-        console.log(itemCards)
+      //  console.log(itemCards)
     
   return (
     <div>

@@ -25,7 +25,7 @@ const Main = () => {
     const fetchData=async()=>{
        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
        const json=await data.json();
-       console.log(json)
+      // console.log(json)
          ser(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
          setfiltered(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)      ;                                                                                                                                                                                                                                                                                                                 
     }
@@ -68,7 +68,7 @@ if(se.length===0)
                     )
                     setfiltered(filt);
                     
-                    console.log("hii")
+                  //  console.log("hii")
                 }}   className='m-4 p-2 rounded-2xl bg-red-500'>
                     search</button>
 

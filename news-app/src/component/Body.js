@@ -19,9 +19,9 @@ const Body = (props) => {
     const fetchData=async()=>{
         const data=await fetch(`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=fa64d9a275a04f9091203ae6779054f8`)
         const json=await data.json();
-        console.log(json);
+      //  console.log(json);
         setnews(json.articles)
-        // console.log(news)
+        // (news)
         // console.log("hii")
 
 

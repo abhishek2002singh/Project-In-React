@@ -2,6 +2,22 @@
 
 -create React-app
 -configured TailwindCSS
+-Header
+-Routing our app
+-Login form -
+-sign up form
+-FOrm validation
+-useRef hook
+-Firbase setup
+-Deploying our app to production
+-Create signup user account
+-Implement sign In user api
+-Create Redux store with userslice
+-Implemented Sign out
+-Update profile
+-bugFix: sign up user display name and profile pictore update
+-BugFix: if the user is not login in redirect /browse to login page and vice-Virse
+-Unscribed to the onAuthstatechange callback
 
 # Feature
 
