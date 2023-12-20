@@ -9,10 +9,10 @@ const SecondryContainer = () => {
   return movies.nowPlayingMovies && (
     <div className='-mt-24 relative'>
       <MoviesList title={"Now Playing"} movies={movies.nowPlayingMovies} />
-      <MoviesList title={"Tranding Movies"} movies={movies.nowPlayingMovies} />
+      <MoviesList title={"TopRated Movies"} movies={movies.TopRatingMovies} />
       <MoviesList title={"Popular Movies"} movies={movies.PopularMovies} />
-      <MoviesList title={"Up Coming Movies"} movies={movies.nowPlayingMovies} />
-      <MoviesList title={"Horer Movies"} movies={movies.nowPlayingMovies} />
+      <MoviesList title={"Up Coming Movies"} movies={movies.TreandingMovies} />
+      <MoviesList title={"Horror Movies"} movies={movies.nowPlayingMovies} />
     </div>
   )
 }

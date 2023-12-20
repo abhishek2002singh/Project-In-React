@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { lazy ,Suspense} from 'react'
 import Nav from './Nav'
 import Main from './Main'
-import About from './About'
+// import About from './About'
 import RestaurantMenu from './RestaurantMenu'
-import Content from './Content'
+// import Content from './Content'
 import Error from './Error'
 import { createBrowserRouter , Outlet } from 'react-router-dom'
+// import Glosery from './Glosery'
+
+//lazy loading
+//ondemand Loading
+//chucking
+//dynamic bundlind
+//code splitting
+// dynamic import
+
+const Glosery=lazy(()=>import('./Glosery'));
+const About=lazy(()=>import('./About'));
+const Content=lazy(()=>import('./Content'))
 
 export const Body = () => {
   return (
@@ -30,11 +42,15 @@ export const AppRouter=createBrowserRouter([
 
         {
             path:"/About",
-            element:<About />,
+            element:<Suspense fallback={<h1>Loading.....</h1>}><About /></Suspense>,
         },
         {
             path:"/Content",
-            element:<Content />,
+            element:<Suspense fallback={<h1>Loading.......</h1>}><Content /></Suspense>,
+        },
+        {
+          path:"/glosery",
+          element: <Suspense fallback={<h1>Loading.....</h1>}>< Glosery /></Suspense>
         },
         {
           path:"/Restaurants/:resid",

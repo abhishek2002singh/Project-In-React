@@ -1,5 +1,7 @@
 // import Main from "./Main";
 
+import Main from "./Main";
+
 
 export const Closure=(props)=>{
     const {clue}=props;
@@ -25,6 +27,18 @@ export const Closure=(props)=>{
         
     )
 }
+
+// export const RestaurantPromotLevel=(Restaurant)=>{
+//     return()=>{
+//         return(
+//             <div>
+//                 <label>Prometed</label>
+//                 <Main />
+//             </div>
+//         )
+
+//     }
+// }
 
 
 

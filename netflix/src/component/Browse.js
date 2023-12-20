@@ -4,12 +4,16 @@ import useNowPlayingMovies from '../utils/useNowPlayingMovies'
 import MainConterner from './MainConterner'
 import SecondryContainer from './SecondryContainer'
 import useNowPopularMovies from '../utils/useNowPopularMovies'
+import useNowTreandingMovies from '../utils/useNowTreandingMovies'
+import useTopRatingMoviesP from '../utils/useTopRatingMoviesP'
 
 
 const Browse = () => {
     
      useNowPlayingMovies();
      useNowPopularMovies()
+     useNowTreandingMovies()
+     useTopRatingMoviesP()
 
   return (
     <div>

@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import {Link} from 'react-router-dom'
+import useOnlineStatus from '../Hooks/useOnlineStatus'
 
 const Nav=()=>{
 
     const [sign , setsign]=useState("Log in") 
+    const onlineStatus=useOnlineStatus();
 
     return(
         <div className="bg-white-300  w-full h-20  ">
@@ -17,6 +19,9 @@ const Nav=()=>{
                 </div>
                 <div className="text-black-700 w-1/2 ">
                     <ul className="flex justify-around  " >
+                        <li>
+                            Online status {onlineStatus? "✅" :"🔴"}
+                        </li>
                         <li className="bg-white-300 hover:text-orange-600 active:text-orange-600 focus:outline-none  cursor-pointer text-lg">
                             <Link to="/">
                                  Home
@@ -38,6 +43,7 @@ const Nav=()=>{
                            
                             
                             </li>
+
                         <li className="bg-white-300 hover:text-orange-600 active:text-orange-600 focus:outline-none  cursor-pointer text-lg"
                         
                         onClick={()=>{
@@ -48,6 +54,11 @@ const Nav=()=>{
                         }}
 
                         >{sign}</li>
+                        <li>
+                            <Link to='/glosery'>
+                                Glosery
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </div>

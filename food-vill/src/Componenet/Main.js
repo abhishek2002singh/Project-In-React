@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { useState , useEffect } from 'react';
-import Closure from './Closure';
+import Closure  from './Closure';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom'
+import useOnlineStatus from '../Hooks/useOnlineStatus'
 
 
 
@@ -15,6 +16,8 @@ const Main = () => {
     const [search, setsearch]=useState()
 
     const[filtered ,setfiltered ]=useState([])
+
+   
   
 
     useEffect(()=>{
@@ -23,12 +26,19 @@ const Main = () => {
 
 
     const fetchData=async()=>{
-       const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+       const data=await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=12.9351929&lng=77.62448069999999");
        const json=await data.json();
-      // console.log(json)
-         ser(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
-         setfiltered(json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.restaurants)      ;                                                                                                                                                                                                                                                                                                                 
+      console.log(json)
+         ser(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants); 
+         setfiltered(json?.data?.success?.cards[1]?.gridWidget?.gridElements?.infoWithStyle?.restaurants)      ;                                                                                                                                                                                                                                                                                                                 
     }
+
+    const onlinestatus= useOnlineStatus()
+
+    if(onlinestatus===false){
+      return <h1>looks like you are offline  please check your internet connection</h1>
+    }
+
 if(se.length===0)
 {
    return <Shimmer/>
@@ -81,11 +91,10 @@ if(se.length===0)
 
           {filtered.map((restaurant) => (
             <Link key={restaurant.info.id} to={"/Restaurants/"+restaurant.info.id}>
-             <Closure  clue={restaurant}/></Link>
-            
-                            
-                            
-                       
+               {
+
+               }
+             <Closure  clue={restaurant}/></Link> 
                     ))}
 
           </div>
