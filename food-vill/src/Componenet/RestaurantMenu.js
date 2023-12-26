@@ -46,7 +46,7 @@ const RestaurantMenu = () => {
         {/* for more learn search accordiens */}
 
         {
-          categories.map((category)=><RestaurantCategory data={category?.card?.card} />)
+          categories.map((category)=><RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} />)
         }
 
 
