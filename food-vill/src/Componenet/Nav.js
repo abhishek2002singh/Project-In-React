@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState ,useContext} from 'react'
 import {Link} from 'react-router-dom'
 import useOnlineStatus from '../Hooks/useOnlineStatus'
+import UserContext from '../Utils/UserContext'
 
 const Nav=()=>{
 
     const [sign , setsign]=useState("Log in") 
     const onlineStatus=useOnlineStatus();
+    const data= useContext(UserContext);
 
     return(
         <div className="bg-white-300  w-full h-20  ">
@@ -59,6 +61,12 @@ const Nav=()=>{
                                 Glosery
                             </Link>
                         </li>
+                        <li className='font-bold'>
+                            {data.user.name}
+                        </li>
+                        {/* <li>
+                            {data.user.Email}
+                        </li> */}
                     </ul>
                 </div>
             </div>

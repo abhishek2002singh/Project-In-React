@@ -1,9 +1,13 @@
 // import Main from "./Main";
+import { useContext } from "react";
+import UserContext from "../Utils/UserContext";
 
 import Main from "./Main";
 
 
 export const Closure=(props)=>{
+
+    const data=useContext(UserContext);
     const {clue}=props;
     return(
         
@@ -14,6 +18,8 @@ export const Closure=(props)=>{
                 <h3>{clue.info.name}</h3>
                 <h3>{clue.info.avgRating}</h3>
                 <h3>{clue.info.costForTwo}</h3>
+                <h2 className="font-bold">{data.user.name}</h2>
+                <h1 className="font-bold">{data.user.Email}</h1>
                 
             </div>
             
