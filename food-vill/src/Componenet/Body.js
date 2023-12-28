@@ -7,6 +7,8 @@ import RestaurantMenu from './RestaurantMenu'
 import Error from './Error'
 import { createBrowserRouter , Outlet } from 'react-router-dom'
 // import Glosery from './Glosery'
+import { Provider } from 'react-redux'
+import appStore from '../Utils/appStore'
 
 //lazy loading
 //ondemand Loading
@@ -21,11 +23,17 @@ const Content=lazy(()=>import('./Content'))
 
 export const Body = () => {
   return (
+
+    <Provider store={appStore}>
     <div>
-           <Nav />
+     
+         <Nav />
            {/* <Main /> */}
            <Outlet />
+    
+          
     </div>
+    </Provider>
   )
 }
 

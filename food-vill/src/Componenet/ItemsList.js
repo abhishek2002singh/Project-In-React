@@ -1,7 +1,18 @@
+import { useDispatch } from 'react-redux'
 import {IMG_ITEMS_CARD} from '../Utils/Constants'
+import { addItems } from '../Utils/cardSlice'
 
 const ItemsList=({items})=>{
-    console.log(items)
+
+
+    // console.log(items)
+
+    const dispatch=useDispatch()
+
+    const handleitems=()=>{
+        dispatch(addItems("pizza"))
+    }
+
     return(
 
         <div>
@@ -27,6 +38,11 @@ const ItemsList=({items})=>{
                     
                     <div>
                        <img  src={IMG_ITEMS_CARD+item.card.info.imageId} alt="" />
+                       <button className='bg-black text-white p-2  text-2xl mx-10'
+                       
+                       onClick={handleitems}
+
+                       >ADD+</button>
                    </div>
                 </div>
                      

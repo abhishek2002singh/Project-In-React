@@ -2,12 +2,15 @@ import { useState ,useContext} from 'react'
 import {Link} from 'react-router-dom'
 import useOnlineStatus from '../Hooks/useOnlineStatus'
 import UserContext from '../Utils/UserContext'
+import { useSelector } from 'react-redux'
 
 const Nav=()=>{
 
     const [sign , setsign]=useState("Log in") 
     const onlineStatus=useOnlineStatus();
     const data= useContext(UserContext);
+
+    const cardItem=useSelector((store)=>store.card.items)
 
     return(
         <div className="bg-white-300  w-full h-20  ">
@@ -56,6 +59,9 @@ const Nav=()=>{
                         }}
 
                         >{sign}</li>
+                        <li className='font-bold'>
+                            card -{cardItem.length}
+                        </li>
                         <li>
                             <Link to='/glosery'>
                                 Glosery
